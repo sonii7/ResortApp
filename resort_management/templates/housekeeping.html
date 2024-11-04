@@ -1,0 +1,127 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}Housekeeping Management{% endblock %}
+
+{% block content %}
+<div>
+    <h2>Admin Dashboard</h2>
+    <p >Manage reservations, rooms, payments, and more.</p>
+    <link rel="stylesheet" href="{%static 'css/admin_dashboard.css'}">
+
+    <!-- Navigation for Admin Functions -->
+    <nav class="admin-nav" style="display: flex; justify-content: center; margin-bottom: 20px;">
+        <ul style="list-style: none; padding: 0; display: flex; gap: 15px;">
+            <li><a href="{% url 'pages:manage_reservations' %}">Manage Reservations</a></li>
+            <li><a href="{% url 'pages:room_management' %}" >Manage Rooms</a></li>
+            <li><a href="{% url 'pages:housekeeping' %}" >Housekeeping</a></li>
+        </ul>
+    </nav>
+</div>
+<div class="housekeeping-container">
+    <h2>Housekeeping Management</h2>
+
+    <!-- Room List with Dynamic Status -->
+    <table class="housekeeping-table">
+        <thead>
+            <tr>
+                <th>Room Number</th>
+                <th>Status</th>
+                <th>Action</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for room in rooms %}
+                <tr>
+                    <td>{{ room.room_number }}</td>
+                    <td>{{ room.status }}</td>
+                    <td>
+                        <form action="{% url 'update_room_status' room.id %}" method="POST">
+                            {% csrf_token %}
+                            <select name="status">
+                                <option value="Clean" {% if room.status == 'Clean' %}selected{% endif %}>Clean</option>
+                                <option value="Dirty" {% if room.status == 'Dirty' %}selected{% endif %}>Dirty</option>
+                                <option value="In Service" {% if room.status == 'In Service' %}selected{% endif %}>In Service</option>
+                                <option value="Laundry Service" {% if room.status == 'Laundry Service' %}selected{% endif %}>Laundry Service</option>
+                            </select>
+                            <button type="submit">Update</button>
+                        </form>
+                    </td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    <a href="{% url 'pages:admin_dashboard' %}" class="back-button">Back to Admin Dashboard</a>
+
+    <!-- Filter Option -->
+    <div class="filter-section">
+        <h3>Filter Rooms</h3>
+        <form action="{% url 'pages:filter_rooms' %}" method="GET">
+            <label for="status">Select Status:</label>
+            <select name="status" id="status">
+                <option value="">All</option>
+                <option value="Clean">Clean</option>
+                <option value="Dirty">Dirty</option>
+                <option value="In Service">In Service</option>
+                <option value="Laundry Service">Laundry Service</option>
+            </select>
+            <button type="submit">Filter</button>
+        </form>
+    </div>
+</div>
+
+<!-- CSS Styles -->
+<style>
+    .housekeeping-container {
+        max-width: 800px;
+        margin: auto;
+        padding: 20px;
+        background-color: #f9f9f9;
+        border-radius: 8px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    }
+    .housekeeping-table {
+        width: 100%;
+        border-collapse: collapse;
+        margin-top: 20px;
+    }
+    .housekeeping-table th, .housekeeping-table td {
+        border: 1px solid #ddd;
+        padding: 10px;
+        text-align: left;
+    }
+    .housekeeping-table th {
+        background-color: #4CAF50; /* Green background for table header */
+        color: white;
+    }
+    .housekeeping-table tr:nth-child(even) {
+        background-color: #f2f2f2; /* Zebra striping for table rows */
+    }
+    .housekeeping-table tr:hover {
+        background-color: #ddd; /* Highlight on hover */
+    }
+    .filter-section {
+        margin-top: 20px;
+    }
+    .filter-section label {
+        margin-right: 10px;
+    }
+    .filter-section select {
+        padding: 5px;
+    }
+    .filter-section button {
+        padding: 5px 10px;
+        background-color: #007BFF; /* Bootstrap primary color */
+        color: white;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+    }
+    .filter-section button:hover {
+        background-color: #0056b3; /* Darker blue on hover */
+    }
+</style>
+
+{% endblock %}
+
+
+ 

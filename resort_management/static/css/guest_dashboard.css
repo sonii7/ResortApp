@@ -1,0 +1,85 @@
+/* General Styles */
+body {
+  font-family: Arial, sans-serif;
+  background-color: rgba(255, 255, 255, 0.5); /* Light background for the page */
+  color: #333; /* Text color */
+  margin: 0; /* Remove default margin */
+  padding: 20px; /* Padding for the body */
+}
+
+.card-container {
+  display: flex; /* Flexbox layout for cards */
+  justify-content: center; /* Center cards horizontally */
+  flex-wrap: wrap; /* Allow cards to wrap to the next line */
+  gap: 20px; /* Space between cards */
+  max-width: 1200px; /* Max width for the container */
+  margin: auto; /* Center the container */
+}
+
+.card {
+  background-color: rgba(255, 255, 255, 0.5); /* White background for cards */
+  border-radius: 10px; /* Rounded corners */
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1); /* Light shadow for cards */
+  padding: 20px; /* Padding inside cards */
+  text-align: center; /* Center text inside cards */
+  flex: 1 1 calc(33% - 40px); /* Three cards per row with gap */
+  min-width: 250px; /* Minimum width for cards */
+}
+
+.card-icon {
+  font-size: 40px; /* Icon size */
+  color: white; /* Primary color for icons */
+  margin-bottom: 10px; /* Space below icons */
+}
+
+.card h2 {
+  font-size: 24px; /* Heading size */
+  margin: 10px 0; /* Margin above and below headings */
+}
+
+.card-description {
+  font-size: 16px; /* Description text size */
+  margin: 10px 0; /* Margin above and below descriptions */
+}
+
+.card-description a {
+  text-decoration: none; /* Remove underline from links */
+  color: black; /* Link color */
+  transition: color 0.3s; /* Transition for hover effect */
+}
+
+.card-description a:hover {
+  color: #0056b3; /* Darker shade on hover */
+}
+
+/* Responsive Styles */
+@media (max-width: 768px) {
+  .card {
+      flex: 1 1 calc(50% - 20px); /* Two cards per row on smaller screens */
+  }
+}
+
+@media (max-width: 480px) {
+  .card {
+      flex: 1 1 100%; /* One card per row on very small screens */
+  }
+}
+
+.room-details-container {
+  max-width: 600px;
+  margin: auto;
+  padding: 20px;
+  background-color: #f9f9f9;
+  border-radius: 8px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.room-details-container h2 {
+  text-align: center;
+}
+
+.room-details-container p {
+  font-size: 16px;
+  margin-bottom: 10px;
+  line-height: 1.6;
+}

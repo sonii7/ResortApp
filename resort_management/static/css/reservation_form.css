@@ -1,0 +1,104 @@
+/* General body styling */
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+    background-color:rgba(255, 255, 255, 0.5); /* Set to transparent to let background image show */
+}
+
+/* Wrapper for the reservation card */
+.reservation-wrapper {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* Reservation card styling */
+.reservation-container {
+    background-color: rgba(255, 255, 255, 0.5); /* Matches signup form background */
+    padding: 40px; /* Same padding as the signup card */
+    border-radius: 12px; /* Rounded corners like the signup card */
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1); /* Similar shadow for a sleek look */
+    max-width: 400px; /* Same max-width as signup card */
+    width: 90%; /* Responsive width */
+    text-align: center; /* Centered text */
+}
+
+/* Title styles */
+.reservation-container h1 {
+    font-size: 24px; /* Same font size as the signup header */
+    font-weight: 600;
+    color: black; /* White color to match signup form */
+    margin-bottom: 10px; /* Consistent margin */
+}
+
+/* Form styling */
+form {
+    display: flex;
+    flex-direction: column;
+}
+
+/* Input group styles */
+.input-group {
+    margin-bottom: 20px; /* Same margin as in the signup form */
+}
+
+.input-group label {
+    font-size: 14px;
+    color: black; /* Set label color to white for readability */
+    margin-bottom: 5px;
+    text-align: left;
+    display: block;
+}
+
+.input-group input,
+.input-group select {
+    width: 100%;
+    padding: 12px; /* Same padding for consistency */
+    border: 1px solid #f96d00; /* Orange border */
+    border-radius: 8px; /* Rounded corners */
+    background-color: #f9f9f9; /* Light background for inputs */
+    font-size: 14px;
+    color: #333; /* Dark text for better readability */
+    outline: none;
+    transition: border-color 0.3s ease;
+}
+
+.input-group input:focus,
+.input-group select:focus {
+    border-color: white; /* Blue border on focus for consistency */
+    background-color: #fff; /* Change background on focus */
+}
+
+/* Button styles */
+button.cta-button {
+    background-color: #f96d00; /* Orange background similar to signup button */
+    color: white;
+    padding: 12px;
+    font-size: 16px;
+    border: none;
+    border-radius: 8px; /* Same border-radius as the signup button */
+    cursor: pointer;
+    margin-top: 10px;
+    transition: background-color 0.3s ease;
+}
+
+button.cta-button:hover {
+    background-color: #e96400; /* Darker orange on hover */
+}
+
+/* Error message styles */
+.error-message {
+    color: red; /* Error message color */
+}
+
+/* Responsive Design */
+@media (max-width: 600px) {
+    .reservation-container {
+        width: 85%; /* Matches the responsive behavior of the signup form */
+        padding: 15px; /* Reduced padding for smaller screens */
+    }
+}

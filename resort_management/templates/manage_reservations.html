@@ -1,0 +1,288 @@
+{% extends 'admin_dashboard.html' %}
+{% load static %}
+
+{% block title %}Manage Reservations{% endblock %}
+
+{% block content %}
+<style>
+    /* Full Page Centering */
+    body {
+        display: flex;
+        justify-content: center;
+        align-items: flex-start;  /* Align items to the top */
+        min-height: 100vh; /* Ensure it covers full height */
+        margin: 0;
+        background-color: #eef1f7;
+        font-family: Arial, sans-serif;
+    }
+
+    /* Offset for Navbar */
+    .navbar-offset {
+        margin-top: 80px; /* Adjust this value according to the height of your navbar */
+        width: 100%; /* Take full width */
+        display: flex;
+        justify-content: center; /* Center horizontally */
+    }
+
+    /* Outer Wrapper for Centering */
+    .container-wrapper {
+        display: flex;
+        justify-content: center;
+        width: 100%;
+        padding: 20px;
+    }
+
+    /* Main Reservation Container */
+    .manage-reservations-container {
+        background-color: #ffffff;
+        padding: 40px;
+        border-radius: 10px;
+        box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2);
+        width: 100%;
+        max-width: 1200px; /* Set max width for better layout */
+        margin: auto; /* Center the container */
+    }
+
+    /* Title Styling */
+    h2 {
+        font-size: 32px;
+        font-weight: 700;
+        color: #333;
+        margin-bottom: 30px;
+        text-align: center;
+        border-bottom: 4px solid #f96d00;
+        padding-bottom: 10px;
+    }
+
+    /* Table Styling */
+    .reservations-table {
+        width: 100%;
+        border-collapse: collapse;
+        margin-bottom: 30px;
+        font-size: 16px;
+    }
+
+    .reservations-table th, .reservations-table td {
+        padding: 16px;
+        text-align: left;
+        border-bottom: 1px solid #ddd;
+    }
+
+    .reservations-table th {
+        background-color: #f96d00;
+        color: white;
+        font-weight: 600;
+        font-size: 16px;
+        border-top: 1px solid #f96d00;
+    }
+
+    .reservations-table tr:hover {
+        background-color: #f9f9f9;
+    }
+
+    .reservations-table td {
+        color: #555;
+    }
+
+    /* Action Buttons */
+    .action-button {
+        padding: 8px 14px;
+        font-size: 14px;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        margin-right: 6px;
+    }
+
+    .edit-button {
+        background-color: #007bff;
+        color: white;
+    }
+
+    .edit-button:hover {
+        background-color: #0056b3;
+    }
+
+    .save-button {
+        background-color: #28a745;
+        color: white;
+    }
+
+    .save-button:hover {
+        background-color: #218838;
+    }
+
+    .cancel-button {
+        background-color: #dc3545;
+        color: white;
+    }
+
+    .cancel-button:hover {
+        background-color: #c82333;
+    }
+
+    /* Back Button Styling */
+    .back-button {
+        display: inline-block;
+        padding: 12px 24px;
+        background-color: #6c757d;
+        color: white;
+        border-radius: 5px;
+        text-decoration: none;
+        font-size: 15px;
+        text-align: center;
+        margin-top: 30px;
+    }
+
+    .back-button:hover {
+        background-color: #5a6268;
+    }
+
+    /* Pagination */
+    .pagination {
+        text-align: center;
+        margin-top: 20px;
+    }
+
+    .pagination a {
+        color: #f96d00;
+        text-decoration: none;
+        font-size: 14px;
+        margin: 0 10px;
+    }
+
+    .pagination a:hover {
+        text-decoration: underline;
+    }
+
+    /* Editable Fields */
+    .edit-mode input[type="text"],
+    .edit-mode input[type="date"],
+    .edit-mode select {
+        padding: 8px 10px;
+        width: 100%;
+        font-size: 14px;
+        border-radius: 5px;
+        border: 1px solid #ddd;
+        background-color: #f9f9f9;
+        margin-top: 8px;
+    }
+
+    /* Focus state for editable fields */
+    .edit-mode input[type="text"]:focus,
+    .edit-mode input[type="date"]:focus,
+    .edit-mode select:focus {
+        border-color: #007BFF;
+        outline: none;
+    }
+</style>
+<div>
+    <h2>Admin Dashboard</h2>
+    <p >Manage reservations, rooms, payments, and more.</p>
+    <link rel="stylesheet" href="{%static 'css/admin_dashboard.css'}">
+
+    <!-- Navigation for Admin Functions -->
+    <nav class="admin-nav" style="display: flex; justify-content: center; margin-bottom: 20px;">
+        <ul style="list-style: none; padding: 0; display: flex; gap: 15px;">
+            <li><a href="{% url 'pages:manage_reservations' %}">Manage Reservations</a></li>
+            <li><a href="{% url 'pages:room_management' %}" >Manage Rooms</a></li>
+            <li><a href="{% url 'pages:housekeeping' %}" >Housekeeping</a></li>
+        </ul>
+    </nav>
+</div>
+<div class="navbar-offset">
+    <div class="container-wrapper">
+        <div class="manage-reservations-container">
+            <h2>Manage Reservations</h2>
+
+            <!-- Reservations Table -->
+            <table class="reservations-table">
+                <thead>
+                    <tr>
+                        <th>Guest Name</th>
+                        <th>Check-in Date</th>
+                        <th>Check-out Date</th>
+                        <th>Room Type</th>
+                        <th>Status</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for reservation in reservations %}
+                    <tr id="reservation-{{ reservation.id }}">
+                        <!-- View Mode -->
+                        <td class="view-mode">{{ reservation.guest_name }}</td>
+                        <td class="view-mode">{{ reservation.checkin_date }}</td>
+                        <td class="view-mode">{{ reservation.checkout_date }}</td>
+                        <td class="view-mode">{{ reservation.room_type }}</td>
+                        <td class="view-mode">{{ reservation.status }}</td>
+
+                        <!-- Edit Mode Fields -->
+                        <form method="post" action="{% url 'pages:manage_reservations' %}">
+                            {% csrf_token %}
+                            <input type="hidden" name="reservation_id" value="{{ reservation.id }}">
+                            <td class="edit-mode" style="display: none;">
+                                <input type="text" name="guest_name" value="{{ reservation.guest_name }}" required>
+                            </td>
+                            <td class="edit-mode" style="display: none;">
+                                <input type="date" name="checkin_date" value="{{ reservation.checkin_date }}" required>
+                            </td>
+                            <td class="edit-mode" style="display: none;">
+                                <input type="date" name="checkout_date" value="{{ reservation.checkout_date }}" required>
+                            </td>
+                            <td class="edit-mode" style="display: none;">
+                                <input type="text" name="room_type" value="{{ reservation.room_type }}" required>
+                            </td>
+                            <td class="edit-mode" style="display: none;">
+                                <select name="status" required>
+                                    <option value="Confirmed" {% if reservation.status == 'Confirmed' %}selected{% endif %}>Confirmed</option>
+                                    <option value="Checked-in" {% if reservation.status == 'Checked-in' %}selected{% endif %}>Checked-in</option>
+                                    <option value="Checked-out" {% if reservation.status == 'Checked-out' %}selected{% endif %}>Checked-out</option>
+                                    <option value="Cancelled" {% if reservation.status == 'Cancelled' %}selected{% endif %}>Cancelled</option>
+                                </select>
+                            </td>
+                            <td>
+                                <button type="button" class="action-button edit-button" onclick="toggleEditMode({{ reservation.id }})">Edit</button>
+                                <button type="submit" class="action-button save-button edit-mode" style="display: none;">Save</button>
+                            </td>
+                        </form>
+
+                        <!-- Separate Cancel Form -->
+                        <td>
+                            <form method="POST" action="{% url 'pages:cancel_reservation' reservation.id %}" style="display:inline;">
+                                {% csrf_token %}
+                                <button type="submit" class="action-button cancel-button">Cancel</button>
+                            </form>
+                        </td>
+                    </tr>
+                    {% empty %}
+                    <tr>
+                        <td colspan="6">No reservations found.</td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+
+            <a href="{% url 'pages:admin_dashboard' %}" class="back-button">Back to Admin Dashboard</a>
+
+            <!-- Pagination -->
+            <div class="pagination">
+                <a href="#">&laquo; Previous</a>
+                <a href="#">Next &raquo;</a>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+function toggleEditMode(reservationId) {
+    const row = document.getElementById(`reservation-${reservationId}`);
+    const viewModeElements = row.querySelectorAll('.view-mode');
+    const editModeElements = row.querySelectorAll('.edit-mode');
+    const isEditing = editModeElements[0].style.display === 'none';
+
+    viewModeElements.forEach(el => el.style.display = isEditing ? 'none' : '');
+    editModeElements.forEach(el => el.style.display = isEditing ? '' : 'none');
+}
+</script>
+{% endblock %}

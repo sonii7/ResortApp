@@ -1,0 +1,41 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Guest Dashboard</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <link rel="stylesheet" href="{% static 'css/guest_dashboard.css' %}">
+</head>
+<body>
+    <div class="card-container">
+        <div class="card">
+            <i class="fas fa-bed card-icon"></i>
+            <h2>Reserve your Rooms</h2>
+            <p class="card-description"><a href="{% url 'pages:reservation_form' %}">Reserve Here</a></p>
+        </div>
+        <div class="card-container">
+            <div class="card">
+                <i class="fas fa-bed card-icon"></i>
+                <h2>My Room</h2>
+                <p class="card-description"><a href="#">visit</a></p>
+            </div> 
+        <div class="card">
+            <i class="fas fa-user-cog card-icon"></i>
+            <h2>Profile Settings</h2>
+            <p class="card-description"><a href="{% url 'pages:edit_profile' %}">Update your profile</a></p>
+        </div>
+        
+        <div class="card">
+            <i class="fas fa-comments card-icon"></i>
+            <h2>Support</h2>
+            <p class="card-description"><a href="{% url 'pages:contact' %}">Contact support</a></p>
+        </div>
+    </div>
+</body>
+</html>
+{% endblock %}

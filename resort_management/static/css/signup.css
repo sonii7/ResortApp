@@ -1,0 +1,115 @@
+/* General body styling */
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+    background-color: rgba(255, 255, 255, 0.5);
+}
+
+/* Wrapper for the signup card */
+.signup-wrapper {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* Signup card styling */
+.signup-card {
+    background-color:rgba(255, 255, 255, 0.5) ;
+    padding: 40px;
+    border-radius: 12px;
+    box-shadow: 0 4px 20px rgba(255, 254, 254, 0.1);
+    max-width: 400px;
+    width: 90%;
+    text-align: center;
+}
+
+header h1 {
+    font-size: 24px;
+    font-weight: 600;
+    color: black;
+    margin-bottom: 10px;
+}
+
+header p {
+    font-size: 14px;
+    color: black;
+    margin-bottom: 30px;
+}
+
+/* Form styling */
+form {
+    display: flex;
+    flex-direction: column;
+}
+
+.form-group {
+    margin-bottom: 20px;
+}
+
+label {
+    font-size: 14px;
+    color: black;
+    margin-bottom: 5px;
+    text-align: left;
+    display: block;
+}
+
+input[type="text"],
+input[type="email"],
+input[type="password"] {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid #f96d00;
+    border-radius: 8px;
+    background-color: #f9f9f9;
+    font-size: 14px;
+    outline: none;
+    transition: border-color 0.3s ease;
+}
+
+input[type="text"]:focus,
+input[type="email"]:focus,
+input[type="password"]:focus {
+    border-color: #007BFF;
+    background-color: #fff;
+}
+
+button.btn-signup {
+    background-color: #f96d00;
+    color: white;
+    padding: 12px;
+    font-size: 16px;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    margin-top: 10px;
+    transition: background-color 0.3s ease;
+}
+
+button.btn-signup:hover {
+    background-color: #e96400;
+}
+
+/* Extra links for login */
+.extra-links {
+    margin-top: 20px;
+}
+
+.extra-links p {
+    font-size: 12px;
+    color: black;
+}
+
+.extra-links a {
+    color: black;
+    text-decoration: none;
+    font-size: 12px;
+}
+
+.extra-links a:hover {
+    text-decoration: underline;
+}

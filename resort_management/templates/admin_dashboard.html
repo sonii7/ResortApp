@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}Admin Dashboard{% endblock %}
+
+{% block content %}
+<div>
+    <h2>Admin Dashboard</h2>
+    <p >Manage reservations, rooms, payments, and more.</p>
+    <link rel="stylesheet" href="{%static 'css/admin_dashboard.css'}">
+
+    <!-- Navigation for Admin Functions -->
+    <nav class="admin-nav" style="display: flex; justify-content: center; margin-bottom: 20px;">
+        <ul style="list-style: none; padding: 0; display: flex; gap: 15px;">
+            <li><a href="{% url 'pages:manage_reservations' %}">Manage Reservations</a></li>
+            <li><a href="{% url 'pages:room_management' %}" >Manage Rooms</a></li>
+            <li><a href="{% url 'pages:housekeeping' %}" >Housekeeping</a></li>
+        </ul>
+    </nav>
+</div>
+</style>
+{% endblock %}

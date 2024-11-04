@@ -1,0 +1,142 @@
+{% extends 'base.html' %}
+{% block content %}
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FAQs</title>
+   
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        /* Reset default browser styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        /* Body Styling */
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f4f4f9;
+            color: #333;
+            line-height: 1.6;
+            padding: 20px;
+        }
+
+        /* Container for FAQs */
+        .faq-container {
+            max-width: 800px;
+            margin: 0 auto;
+            background: #fff;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        }
+
+        .faq-container h2 {
+            text-align: center;
+            color: #333;
+            margin-bottom: 20px;
+        }
+
+        /* Accordion Styles */
+        .accordion-item {
+            margin-bottom: 10px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            overflow: hidden;
+        }
+
+        .accordion-item-header {
+            background: #3498db;
+            color: white;
+            padding: 15px;
+            cursor: pointer;
+            font-weight: bold;
+            transition: background 0.3s ease;
+        }
+
+        .accordion-item-header:hover {
+            background: #2980b9;
+        }
+
+        .accordion-item-content {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease-out;
+            background: #f9f9f9;
+            padding: 0 15px;
+        }
+
+        .accordion-item-content p {
+            padding: 15px 0;
+        }
+
+        /* Open State Styles */
+        .accordion-item.open .accordion-item-content {
+            max-height: 200px; /* Adjust this value based on content length */
+        }
+    </style>
+</head>
+<body>
+    <div class="faq-container">
+        <h2>Frequently Asked Questions</h2>
+        <div class="accordion-item">
+            <div class="accordion-item-header">
+                What is your return policy?
+            </div>
+            <div class="accordion-item-content">
+                <p>Our return policy allows returns within 30 days of purchase. Items must be in original condition with tags attached.</p>
+            </div>
+        </div>
+        <div class="accordion-item">
+            <div class="accordion-item-header">
+                How do I track my order?
+            </div>
+            <div class="accordion-item-content">
+                <p>You can track your order using the tracking number provided in your confirmation email. Visit our tracking page and enter the tracking number.</p>
+            </div>
+        </div>
+        <div class="accordion-item">
+            <div class="accordion-item-header">
+                Do you offer international shipping?
+            </div>
+            <div class="accordion-item-content">
+                <p>Yes, we offer international shipping to many countries. Shipping fees and delivery times vary by location.</p>
+            </div>
+        </div>
+        <div class="accordion-item">
+            <div class="accordion-item-header">
+                How can I contact customer support?
+            </div>
+            <div class="accordion-item-content">
+                <p>You can contact our customer support team via email at support@example.com or by calling 1-800-123-4567.</p>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // JavaScript for Accordion Functionality
+        document.querySelectorAll('.accordion-item-header').forEach(item => {
+            item.addEventListener('click', () => {
+                const parent = item.parentNode;
+                const content = item.nextElementSibling;
+
+                if (parent.classList.contains('open')) {
+                    content.style.maxHeight = '0';
+                    parent.classList.remove('open');
+                } else {
+                    document.querySelectorAll('.accordion-item-content').forEach(el => el.style.maxHeight = '0');
+                    document.querySelectorAll('.accordion-item').forEach(el => el.classList.remove('open'));
+                    content.style.maxHeight = content.scrollHeight + 'px';
+                    parent.classList.add('open');
+                }
+            });
+        });
+    </script>
+</body>
+</html>
+{% endblock %}

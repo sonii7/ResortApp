@@ -1,0 +1,19 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}My Room Details{% endblock %}
+
+{% block content %}
+<div class="room-details-container">
+    {% if error_message %}
+        <p>{{ error_message }}</p>
+    {% else %}
+        <h2>Room Details</h2>
+        <p><strong>Room Number:</strong> {{ reservation.room.room_number }}</p>
+        <p><strong>Room Type:</strong> {{ reservation.room.room_type }}</p>
+        <p><strong>Check-in Date:</strong> {{ reservation.checkin }}</p>
+        <p><strong>Check-out Date:</strong> {{ reservation.checkout }}</p>
+        <p><strong>Price per Night:</strong> ${{ reservation.room.price_per_night }}</p>
+    {% endif %}
+</div>
+{% endblock %}

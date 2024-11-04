@@ -1,0 +1,49 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Restaurant Management - Login</title>
+    
+    <link rel="stylesheet" href="{% static 'css/login.css' %}">
+    <style>
+        body {
+            background-image: url("{% static 'images/ab.jpg' %}");
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+        }
+        .error-message {
+            display: none; /* Hide error messages initially */
+            color: red;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="login-card">
+            <div class="left-panel">
+                <!-- Add your left panel content here if needed -->
+            </div>
+            
+            <div class="right-panel">
+                <h1>Login</h1>
+              
+                <form method="POST">
+                    {% csrf_token %}
+                    <label for="username">Username:</label>
+                    <input type="text" id="username" name="username" required><br><br>
+            
+                    <label for="password">Password:</label>
+                    <input type="password" id="password" name="password" required><br><br>
+            
+                    <button type="submit">Login</button>
+                  
+                    <p style="margin-top: 20px; "><strong>Create new Account</strong> <a style="color:white;" href="{% url 'pages:signup' %}"><strong>Sign Up</strong></a></p>
+                </form>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

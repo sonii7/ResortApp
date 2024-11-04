@@ -1,0 +1,168 @@
+{% extends 'base.html' %}
+
+{% block title %}Home - Resort Management{% endblock %}
+
+{% block extra_head %}
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/home.css' %}">
+    <style>
+        .feature {
+            cursor: pointer; /* Change cursor on hover */
+            transition: transform 0.2s; /* Add a small scale effect */
+        }
+
+        .feature:hover {
+            transform: scale(1.05); /* Scale up on hover */
+        }
+
+        /* Modal styles */
+        .modal {
+            display: none; /* Hidden by default */
+            position: fixed; /* Stay in place */
+            z-index: 1; /* Sit on top */
+            left: 0;
+            top: 0;
+            width: 100%; /* Full width */
+            height: 100%; /* Full height */
+            overflow: auto; /* Enable scroll if needed */
+            background-color: rgba(0, 0, 0, 0.9); /* Black w/ opacity */
+            justify-content: center; /* Center modal content horizontally */
+            align-items: center; /* Center modal content vertically */
+            text-align: center; /* Center the caption text */
+        }
+
+        .modal-content {
+            display: flex; /* Use flexbox for layout */
+            max-width: 800px; /* Set a max width for modal */
+            margin: 5% auto; /* Center vertically and horizontally */
+            background-color: #fff; /* White background for content */
+            border-radius: 8px; /* Rounded corners */
+            overflow: hidden; /* Prevent overflow */
+        }
+
+        .modal-image {
+            flex: 1; /* Allow image to take full width */
+            max-height: 400px; 
+            object-fit: cover; /* Cover the area without distorting */
+        }
+
+        .modal-caption {
+            flex: 1; /* Allow caption to take full width */
+            padding: 20px; /* Padding for the text */
+            display: flex; /* Use flexbox for alignment */
+            flex-direction: column; /* Stack items vertically */
+            justify-content: center; /* Center items vertically */
+        }
+
+        .caption {
+            color: #333; /* Dark text for caption */
+            font-size: 18px; /* Font size for caption */
+        }
+
+        .close {
+            position: absolute;
+            top: 10px;
+            right: 25px;
+            color: #f1f1f1;
+            font-size: 40px;
+            font-weight: bold;
+            transition: 0.3s;
+        }
+
+        .close:hover,
+        .close:focus {
+            color: #bbb;
+            text-decoration: none;
+            cursor: pointer;
+        }
+    </style>
+{% endblock %}
+
+{% block content %}
+    <section class="hero">
+        <h1>Welcome to the Luxury Resort Management System</h1>
+        <p>Streamline your operations and enhance guest experiences with our resort management software.</p>
+        <a href="{% url 'pages:signup' %}" class="cta-button" style="color: white;">Get Started</a>
+    </section>
+
+    <section class="features">
+        <h2>Features</h2>
+        <div class="features-list">
+            <div class="feature" data-image="{% static 'images/swimmingpool.jpg' %}" data-caption="Enjoy our luxurious outdoor swimming pool for relaxation and leisure.">
+                <i class="fas fa-swimming-pool"></i> Outdoor swimming pool
+            </div>
+            <div class="feature" data-image="{% static 'images/roomservice.jpg' %}" data-caption="Experience top-notch room service at any time of day.">
+                <i class="fas fa-concierge-bell"></i> Room service
+            </div>
+            <div class="feature" data-image="{% static 'images/park.jpg' %}" data-caption="Enjoy fun-filled activities at our children's park.">
+                <i class="fas fa-child"></i> Children's Park
+            </div>
+            
+            <div class="feature" data-image="{% static 'images/restaurant.jpg' %}" data-caption="Dine at our two exquisite restaurants offering diverse cuisines.">
+                <i class="fas fa-utensils"></i> 2 restaurants
+            </div>
+            <div class="feature" data-image="{% static 'images/disability.jpg' %}" data-caption="We provide excellent facilities for disabled guests.">
+                <i class="fas fa-wheelchair"></i> Facilities for disabled guests
+            </div>
+            <div class="feature" data-image="{% static 'images/parking.jpg' %}" data-caption="Enjoy convenient free parking during your stay.">
+                <i class="fas fa-parking"></i> Free parking
+            </div>
+            <div class="feature" data-image="{% static 'images/wifi.jpg' %}" data-caption="Stay connected with our complimentary WiFi throughout the resort.">
+                <i class="fas fa-wifi"></i> Free WiFi
+            </div>
+            <div class="feature" data-image="{% static 'images/familyrooms.jpg' %}" data-caption="Family rooms are available to accommodate larger groups.">
+                <i class="fas fa-users"></i> Family rooms
+            </div>
+            <div class="feature" data-image="{% static 'images/breakfast.jpg' %}" data-caption="Start your day with our delicious breakfast options.">
+                <i class="fas fa-coffee"></i> Breakfast
+            </div>
+        </div>
+    </section>
+
+    <!-- Modal for displaying images -->
+    <div id="myModal" class="modal">
+        <span class="close">&times;</span>
+        <div class="modal-content">
+            <img class="modal-image" id="img01">
+            <div class="modal-caption">
+                <div class="caption" id="caption"></div> <!-- Caption for the image -->
+            </div>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            // Get the modal
+            var modal = document.getElementById("myModal");
+            var img = document.getElementById("img01");
+            var captionText = document.getElementById("caption");
+            var features = document.querySelectorAll('.feature');
+
+            // Add click event to each feature
+            features.forEach(function(feature) {
+                feature.onclick = function() {
+                    var imgSrc = this.getAttribute('data-image');
+                    var caption = this.getAttribute('data-caption'); // Get the caption
+                    img.src = imgSrc; // Set image source to the feature's image
+                    captionText.innerHTML = caption; // Set the caption text
+                    modal.style.display = "flex"; // Show modal with flex layout
+                }
+            });
+
+            // Close modal function
+            var span = document.getElementsByClassName("close")[0];
+
+            // When the user clicks on <span> (x), close the modal
+            span.onclick = function() {
+                modal.style.display = "none";
+            }
+
+            // Close the modal when clicking anywhere outside of the image
+            window.onclick = function(event) {
+                if (event.target == modal) {
+                    modal.style.display = "none";
+                }
+            }
+        });
+    </script>
+{% endblock %}

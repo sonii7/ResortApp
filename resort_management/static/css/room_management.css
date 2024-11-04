@@ -1,0 +1,139 @@
+/* General Container Styling */
+.room-management-container {
+    max-width: 700px; /* Reduced from 900px */
+    margin: 0 auto;
+    padding: 15px; /* Reduced padding */
+    background-color: rgba(255, 255, 255, 0.5);
+    border-radius: 8px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+.room-management-container h2 {
+    text-align: center;
+    color: black;
+    margin-bottom: 15px; /* Reduced margin */
+}
+
+/* Form Styling */
+form {
+    margin-bottom: 25px; /* Slightly reduced margin */
+    padding: 15px; /* Reduced padding */
+    background-color: transparent;
+    border-radius: 8px;
+    box-shadow: 0;
+}
+
+.input-group {
+    margin-bottom: 12px; /* Reduced margin */
+}
+
+.input-group label {
+    display: block;
+    font-size: 15px; /* Slightly reduced font size */
+    color: black;
+    margin-bottom: 5px;
+}
+
+.input-group input[type="text"],
+.input-group select {
+    width: 50%;
+    padding: 8px; /* Reduced padding */
+    font-size: 14px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    box-sizing: border-box;
+}
+
+.cta-button {
+    background-color: goldenrod;
+    color: white;
+    border: none;
+    padding: 8px 16px; /* Reduced padding */
+    border-radius: 4px;
+    font-size: 13px; /* Reduced font size */
+    cursor: pointer;
+    margin-right: 10px;
+}
+
+.cta-button:hover {
+    background-color: gold;
+}
+
+/* Table Styling */
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 15px; /* Reduced margin */
+    background-color: rgba(255, 255, 255, 0.5) ;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 1px 5px rgba(0, 0, 0, 0.1);
+}
+
+table thead {
+    background-color: goldenrod;
+    color: white;
+    text-align: left;
+}
+
+table thead th {
+    padding: 10px 12px; /* Reduced padding */
+    font-size: 15px; /* Slightly reduced font size */
+}
+
+table tbody td {
+    padding: 10px 12px; /* Reduced padding */
+    border-bottom: 1px solid #eee;
+}
+
+table tbody tr:nth-child(even) {
+    background-color: rgba(255, 255, 255, 0.5);
+}
+
+/* Button Styling inside Table */
+table tbody td button.cta-button,
+table tbody td a.cta-button {
+    font-size: 11px; /* Reduced font size */
+    padding: 6px 12px; /* Reduced padding */
+}
+
+.empty-state {
+    text-align: center;
+    font-size: 13px; /* Reduced font size */
+    color: #999;
+    padding: 15px; /* Reduced padding */
+}
+
+/* Media Queries for Responsiveness */
+@media (max-width: 768px) {
+    .room-management-container {
+        padding: 10px; /* Reduced padding for smaller screens */
+    }
+
+    table thead {
+        font-size: 13px; /* Adjusted font size for mobile */
+    }
+
+    table tbody td {
+        font-size: 11px; /* Adjusted font size for mobile */
+    }
+
+    .cta-button {
+        padding: 6px 10px; /* Reduced button padding for mobile */
+    }
+}
+.back-button {
+    display: inline-block;
+    margin-bottom: 20px;
+    padding: 10px 20px;
+    background-color: #3498db;
+    color: white;
+    text-decoration: none;
+    border-radius: 5px;
+    font-weight: bold;
+}
+
+.back-button:hover {
+    background-color: #2980b9;
+}
+

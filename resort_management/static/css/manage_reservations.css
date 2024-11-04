@@ -1,0 +1,115 @@
+/* General styling */
+body {
+    font-family: 'Arial', sans-serif;
+    background-color: #f7f7f7;
+    margin: 0;
+    padding: 0;
+}
+
+.admin-nav {
+    margin-bottom: 30px;
+}
+
+/* Admin Dashboard Container */
+.manage-reservations-container {
+    max-width: 1000px;
+    margin: 50px auto;
+    background-color: rgba(255, 255, 255, 0.9);
+    padding: 30px;
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+/* Table Styling */
+.reservations-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 20px;
+}
+
+.reservations-table th, .reservations-table td {
+    border: 1px solid #ddd;
+    padding: 12px;
+    text-align: left;
+}
+
+.reservations-table th {
+    background-color: #4caf50;
+    color: white;
+}
+
+.reservations-table tr:nth-child(even) {
+    background-color: #f2f2f2;
+}
+
+.reservations-table tr:hover {
+    background-color: #ddd;
+}
+
+/* Action Buttons */
+.action-button {
+    background-color: #4caf50;
+    color: white;
+    padding: 8px 12px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.action-button:hover {
+    background-color: #45a049;
+}
+
+.cancel-button {
+    background-color: #f44336;
+}
+
+.cancel-button:hover {
+    background-color: #e53935;
+}
+
+/* Back Button */
+.back-button {
+    background-color: #2196F3;
+    color: white;
+    padding: 10px 15px;
+    text-decoration: none;
+    border-radius: 4px;
+    transition: background-color 0.3s ease;
+}
+
+.back-button:hover {
+    background-color: #1976D2;
+}
+
+/* Pagination Styling */
+.pagination {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 20px;
+}
+
+.pagination a {
+    padding: 10px 15px;
+    text-decoration: none;
+    color: #2196F3;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    transition: background-color 0.3s ease;
+}
+
+.pagination a:hover {
+    background-color: #f2f2f2;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .manage-reservations-container {
+        padding: 20px;
+    }
+
+    .reservations-table {
+        font-size: 0.9rem;
+    }
+}

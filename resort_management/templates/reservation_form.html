@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/reservation_form.css' %}">
+    <style>
+        body {
+            background-image: url("{% static 'images/resortbg.jpg' %}");
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+        }
+        .error-message {
+            color: red; /* Show error messages */
+        }
+    </style>
+    <title>Reservation Form</title>
+</head>
+<body>
+    <div class="reservation-wrapper">
+        <div class="reservation-container">
+            <h1>Reservation Form</h1>
+            {% if error_message %}
+                <div class="error-message">{{ error_message }}</div>
+            {% endif %}
+            <form method="post">
+                {% csrf_token %}
+                <div class="input-group">
+                    <label for="name">Full Name:</label>
+                    <input type="text" id="name" name="name" required>
+                </div>
+                <div class="input-group">
+                    <label for="checkin">Check-In Date:</label>
+                    <input type="date" id="checkin" name="checkin" required>
+                </div>
+                <div class="input-group">
+                    <label for="checkout">Check-Out Date:</label>
+                    <input type="date" id="checkout" name="checkout" required>
+                </div>
+                <div class="input-group">
+                    <label for="room">Room Type:</label>
+                    <select id="room" name="room" required>
+                        <option value="">Select Room Type</option> <!-- Added a default empty option -->
+                        <option value="standard">Standard</option>
+                        <option value="deluxe">Deluxe</option>
+                        <option value="suite">Suite</option>
+                    </select>
+                </div>
+                <div class="input-group">
+                    <label for="members">Dinner Preference:</label>
+                    <select id="members" name="members" required>
+                        <option value="">Select Dinner Preference</option> <!-- Added a default empty option -->
+                        <option value="general">General</option>
+                        <option value="family">Family/Friends</option>
+                        <option value="businessmeet">Business Meet</option>
+                    </select>
+                </div>
+                <button type="submit" class="cta-button">Book Now</button>
+                <div class="extra-links">
+                    <p><a style="color: black;"><strong>Don't have an account?</strong></a> <a style="color: black;" href="{% url 'pages:signup' %}">Sign Up</a></p>
+                </div>
+            </form>
+        </div>
+    </div>
+</body>
+</html>

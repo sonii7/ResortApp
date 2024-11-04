@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    {% load static %}
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sign Up</title>
+    <link rel="stylesheet" href="{% static 'css/signup.css' %}">
+    <style>
+        body {
+            background-image: url("{% static 'images/ab.jpg' %}");
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+        }
+        .error-message {
+            display: none; /* Hide error messages initially */
+            color: red;
+        }
+    </style>
+</head>
+<body>
+    <div class="signup-wrapper">
+        <div class="signup-card">
+            <header>
+                <h1>Create an Account</h1>
+                <p>Join us and explore!</p>
+            </header>
+            <main>
+                <form method="post" >
+
+                    {% csrf_token %}
+                    {{ form.as_p}}
+                    
+                    <button  type="submit" class="btn-signup">Sign Up</button>
+               
+                <div class="extra-links">
+                    <p>Already have an account? <a href="{% url 'pages:user_login' %}">Login</a></p>
+                </div>
+            </form>
+            </main>
+        </div>
+    </div>
+</body>
+</html>
